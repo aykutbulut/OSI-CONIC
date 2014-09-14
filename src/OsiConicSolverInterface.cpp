@@ -12,12 +12,45 @@ int OsiConicSolverInterface::readMps(const char *filename, const char * extensio
   }
   delete [] SOS;
   assert (!status);
-  int nOfCones;
+  // load problem
+  const CoinPackedMatrix * matrix = m_MpsData.getMatrixByCol();
+  const double * collb = m_MpsData.getColLower();
+  const double * colub = m_MpsData.getColUpper();
+  const double * obj = m_MpsData.getObjCoefficients();
+  const double * rowlb = m_MpsData.getRowLower();
+  const double * rowub = m_MpsData.getRowUpper();
+  loadProblem(*matrix, collb, colub, obj, rowlb, rowub);
+  // set row and column names
+  // todo(aykut) names are assumed to be less than 255 characters
+  int name_len = 255;
+  int numcols=m_MpsData.getNumCols();
+  int numrows=m_MpsData.getNumRows();
+  for (int i=0; i<numrows; ++i) {
+    setRowName(i, m_MpsData.rowName(i));
+  }
+  for (int i=0; i<numcols; ++i) {
+    setColName(i, m_MpsData.columnName(i));
+  }
+  // set variable types
+  for (int i=0; i<numcols; ++i) {
+    if (m_MpsData.isInteger(i)) {
+      setInteger(i);
+    }
+  }
+  // read conic part
+  int nOfCones = 0;
   int * coneStart = NULL;
   int * coneIdx = NULL;
   int * coneType = NULL;
   status = m_MpsData.readConicMps(NULL, coneStart, coneIdx, coneType, nOfCones);
-  assert (!status);
+  // when there is no conic section status is -3.
+  if (status==-3) {
+    std::cout << "OsiConic: No conic section is mps file." << std::endl;
+  }
+  else {
+    std::cerr << "OsiConic: readConicMps returned code " << status << std::endl;
+    assert (!status);
+  }
   int * members;
   for (int i=0; i<nOfCones; ++i) {
     if (coneType[i]!=1 and coneType[i]!=2) {
@@ -58,30 +91,5 @@ int OsiConicSolverInterface::readMps(const char *filename, const char * extensio
   delete [] coneStart;
   delete [] coneIdx;
   delete [] coneType;
-  // load problem
-  const CoinPackedMatrix * matrix = m_MpsData.getMatrixByCol();
-  const double * collb = m_MpsData.getColLower();
-  const double * colub = m_MpsData.getColUpper();
-  const double * obj = m_MpsData.getObjCoefficients();
-  const double * rowlb = m_MpsData.getRowLower();
-  const double * rowub = m_MpsData.getRowUpper();
-  loadProblem(*matrix, collb, colub, obj, rowlb, rowub);
-  // set row and column names
-  // todo(aykut) names are assumed to be less than 255 characters
-  int name_len = 255;
-  int numcols=m_MpsData.getNumCols();
-  int numrows=m_MpsData.getNumRows();
-  for (int i=0; i<numrows; ++i) {
-    setRowName(i, m_MpsData.rowName(i));
-  }
-  for (int i=0; i<numcols; ++i) {
-    setColName(i, m_MpsData.columnName(i));
-  }
-  // set variable types
-  for (int i=0; i<numcols; ++i) {
-    if (m_MpsData.isInteger(i)) {
-      setInteger(i);
-    }
-  }
   return 0;
 }
