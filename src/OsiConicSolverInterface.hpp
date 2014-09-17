@@ -29,7 +29,6 @@ public:
 				  const int * members) = 0;
   virtual void removeConicConstraint(int index) = 0;
   virtual int getNumCones() const = 0;
-  //virtual void setConicConstraints(ConicConstraints * cc) = 0;
   virtual OsiConicSolverInterface * clone(bool) const = 0;
   virtual ~OsiConicSolverInterface() {};
   virtual int readMps(const char * filename, const char * extension="mps");
