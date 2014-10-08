@@ -1,0 +1,75 @@
+We have following classes in Osi;
+
+Classes defined in OsiAuxInfo.hpp:
+OsiAuxInfo: This is a very small class that has only one member which is a void
+pointer ie. void * appData_. This has been done to make it easier to use NonLinear
+solvers and other exotic beasts in a branch and bound mode. After this class
+definition there is one for a derived class for just such a purpose.
+OsiBabSolver: Inherits OsiAuxInfo. This class allows for the use of more exotic
+solvers e.g. Non-Linear or Volume in a branch and bound setting. I do not see
+how this helps for now.
+
+Classes defined in OsiBranhcingObject.hpp: This one is a mass.
+OsiObject: Abstract base class for an object that has a feasible region, can be
+evaluated for infeasibility and can be branched.
+OsiObject2: Inherits OsiObject. Extends OsiObject assumes two way branching.
+OsiBranchingObject: an abstract base class that contains instruction on how to
+branch. Branching may be on integer variables and more exotic objects like
+cliques or hyperplanes.
+OsiBranchingInformation: Contains information about branching like pseudo
+shadow prices.
+OsiTwoWayBranchingObject: Inherits OsiBranchingObject. Extends it for two way.
+OsiSimpleInteger: Inherits OsiObject2. Class for an integer variable. Holds
+original lower and upper bounds and column number in solver.
+OsiIntegerBranchingObject: Inherits OsiTwoWayBranchingObject. Branching object
+for an integer variable.
+OsiSOS: Inherits OsiObject2. Define Special Ordered Sets of type 1 and 2.
+These do not have to be integer - so do not appear in lists of integers.
+OsiSOSBranchingObject: Inherits OsiTwoWayBranchingObject. Branching object for
+Special ordered sets
+OsiLotsize: Inherits OsiObject2.
+OsiLotSizeBranchingObject: Inherits OsiTwoWayBranchingObject. This object can
+specify a two-way branch on an integer variable. For each arm of the branch,
+the upper and lower bounds on the variable can be independently specified.
+
+Classes defined in OsiChooseVariable.hpp:
+OsiChooseVariable: Chooses a variable to branch on.
+OsiPseudoCosts: This class is the placeholder for the pseudocosts used by
+OsiChooseStrong. It can also be used by any other pseudocost based strong
+branching algorithm.
+OsiChooseStrong: Inherits OsiChooseVariable. Chooses the variable anddirection
+with reliability strong branching.
+OsiHotInfo: Contains result of a strong branching on a variable.
+
+Classes defined at OsiColCut:
+OsiColCut: Inherits OsiCut. Holds indices of variables, lower bounds and upper bounds. Column cut is a cut where you indicate a bound for a variable only.
+
+Definitions in OsiCollections.hpp:
+This file contains the type definitions of vector of cut pointers. Specifically OsiVectorInt, OsiVectorDouble, OsiVectorColCutPtr, OsiVectorRowCutPtr and OsiVectorCutPtr.
+
+Classes defined in OsiCut.hpp:
+OsiCut:
+
+Classes defined in OsiCuts.hpp
+OsiCuts: Collections of row cuts and column cuts.
+
+Classes defined in OsiPresolve.hpp:
+OsiPresolve:
+
+Classes defined in OsiRowCutDebugger:
+OsiRowCutDebugger: OsiRowCutDebugger provides a facility for validating cuts
+against a known solution for a problem. The debugger knows an optimal solution
+for many of the miplib3 problems.
+
+Classes defined in OsiRowCut: Inherits OsiCut.
+OsiRowCut: Holds a row cut. Has a lower bound and an upper bound for cut. Keeps row as a CoinPackedVector.
+
+Classes defined in OsiSolverBranch.hpp:
+OsiSolverBranch: Provides information on a branch as a set of tighter bounds
+on both ways.
+
+Classes defined in OsiSolverInterface.hpp:
+OsiSolverInterface:
+
+Classes defined in OsiSolverParameters.hpp:
+OsiSolverParameters: Osi enum types.

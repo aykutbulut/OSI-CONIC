@@ -1,0 +1,12 @@
+OsiConicCut and OsiConicCuts:
+OsiConicCuts is a class of general cuts. A proper name should just be OsiCuts.
+But this name is already used in cut class of Osi which implements only linear cuts.
+Due to this we name extended OsiCuts class as OsiConicCuts. OsiConicCuts is a general
+class that can hold both conic and linear cuts. It is a general cut container that
+can contain linear and conic cuts. Same reasoning holds for OsiConicCut.
+
+I mainly do this since I do not have write and extend access to Osi. If I had
+the access I would have keep the class names and just extend all interfaces
+for conic problems.
+
+
