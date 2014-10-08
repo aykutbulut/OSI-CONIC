@@ -2,7 +2,11 @@ lib_LTLIBRARIES = libOsiconic.la
 
 libOsiconic_la_SOURCES=\
 	OsiConicSolverInterface.hpp\
-	OsiConicSolverInterface.cpp
+	OsiConicSolverInterface.cpp\
+	OsiConicCut.hpp\
+	OsiConicCut.cpp\
+	OsiConicCuts.hpp\
+	OsiConicCuts.cpp
 
 libOsiconic_la_LIBADD=\
 	$(OSI_LIBS)\
@@ -17,7 +21,9 @@ AM_CPPFLAGS=\
 
 # header files to be installed to $(includedir)
 include_HEADERS=\
-	OsiConicSolverInterface.hpp
+	OsiConicSolverInterface.hpp\
+	OsiConicCut.hpp\
+	OsiConicCuts.hpp
 
 # this are in the disctribution but not in include
 #noinst_HEADERS=
