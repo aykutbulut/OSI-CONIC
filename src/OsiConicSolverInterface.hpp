@@ -9,7 +9,10 @@ Manipulating/building functions will be supported later.
 #ifndef OsiConicSolverInterface_H
 #define OsiConicSolverInterface_H
 
+// OSI headers
 #include <OsiSolverInterface.hpp>
+
+class OsiConicCuts;
 
 typedef enum {
   OSI_QUAD=0,
@@ -32,6 +35,18 @@ public:
   virtual OsiConicSolverInterface * clone(bool) const = 0;
   virtual ~OsiConicSolverInterface() {};
   virtual int readMps(const char * filename, const char * extension="mps");
+  // un-hide OsiSolverInterfaces applyCuts function
+  // todo(aykut): It is usefull for what? Explain
+  // using OsiSolverInterface::applyCuts;
+  // virtual OsiSolverInterface::ApplyCutsReturnCode applyCuts (
+  // 	const OsiCuts & cs,
+  //       double effectivenessLb=0.0);
+  // overloads applyCuts for linear cuts with conic cut argument
+  // for applying row cuts we use methods inherited from OsiSolverInterface
+  using OsiSolverInterface::applyCuts;
+  virtual OsiSolverInterface::ApplyCutsReturnCode applyCuts (
+   	const OsiConicCuts & cs,
+	double effectivenessLb=0.0);
 };
 
 #endif

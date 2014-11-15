@@ -93,3 +93,10 @@ int OsiConicSolverInterface::readMps(const char *filename, const char * extensio
   delete [] coneType;
   return 0;
 }
+
+OsiSolverInterface::ApplyCutsReturnCode OsiConicSolverInterface::applyCuts(
+				   const OsiConicCuts & cs,
+				   double effectivenessLb) {
+  ApplyCutsReturnCode retVal;
+  return retVal;
+}
