@@ -8,7 +8,7 @@
 
 OsiConicCut::OsiConicCut(): size_(-1),
 			    members_(0),
-			    type_(OSI_QUAD),
+			    type_(OSI_LORENTZ),
 			    num_new_rows_(-1),
 			    rows_(0),
 			    row_lb_(0),
@@ -394,11 +394,14 @@ void OsiConicCut::print() const {
 bool OsiConicCut::consistent () const {
   // it the conic cut is in canonical form then it should have at least 2
   // members
-  if (type_==OSI_QUAD) {
+  std::cerr << "Not implemented yet." << std::endl;
+  throw std::exception();
+  if (type_==OSI_LORENTZ) {
     if (size_<2)
       return false;
   }
-  if (type_==OSI_RQUAD) {
+  // if rotated
+  if (type_==OSI_LORENTZ) {
     if (size_<3)
       return false;
   }

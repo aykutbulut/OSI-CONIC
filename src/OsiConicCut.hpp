@@ -111,7 +111,7 @@ private:
   // row bounds, size is num_new_rows_
   double * row_lb_;
   double * row_ub_;
-  // new columns, we assume they are sparse, size is size is num_new_rows_
+  // new columns, we assume they are sparse, size is num_new_rows_
   // times num_new_cols_
   CoinPackedMatrix * cols_;
   // column bounds corresponding to new variables, size is num_new_cols_

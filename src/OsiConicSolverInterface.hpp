@@ -15,24 +15,40 @@ Manipulating/building functions will be supported later.
 class OsiConicCuts;
 
 typedef enum {
+  OSI_LORENTZ=0,
+  OSI_SCALED
+} OsiConeType;
+
+typedef enum {
   OSI_QUAD=0,
   OSI_RQUAD
-} OsiConeType;
+} OsiLorentzConeType;
 
 class OsiConicSolverInterface: virtual public OsiSolverInterface {
 public:
   // void read(const char * data_file);
   // get conic constraints
-  virtual void getConicConstraint(int index, OsiConeType & type,
+  virtual void getConicConstraint(int index, OsiLorentzConeType & type,
 				  int & numMembers,
 				  int *& members) const = 0;
   // add conic constraints
-  virtual void addConicConstraint(OsiConeType type,
+  // add conic constraint in lorentz cone form
+  virtual void addConicConstraint(OsiLorentzConeType type,
 				  int numMembers,
 				  const int * members) = 0;
+  // add conic constraint in |Ax-b| <= dx-h form
+  virtual void addConicConstraint(CoinPackedMatrix const * A, CoinPackedVector const * b,
+				  CoinPackedVector const * d, double h) = 0;
   virtual void removeConicConstraint(int index) = 0;
+  virtual void modifyConicConstraint(int index, OsiLorentzConeType type,
+				     int numMembers,
+				     const int * members) = 0;
   virtual int getNumCones() const = 0;
-  virtual OsiConicSolverInterface * clone(bool) const = 0;
+  virtual int getConeSize(int i) const = 0;
+  virtual OsiConeType getConeType(int i) const = 0;
+  virtual void getConeSize(int * size) const = 0;
+  virtual void getConeType(OsiConeType * type) const = 0;
+  virtual OsiConicSolverInterface * clone(bool copyData = true) const = 0;
   virtual ~OsiConicSolverInterface() {};
   virtual int readMps(const char * filename, const char * extension="mps");
   // un-hide OsiSolverInterfaces applyCuts function

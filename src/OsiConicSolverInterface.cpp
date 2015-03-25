@@ -67,7 +67,7 @@ int OsiConicSolverInterface::readMps(const char *filename, const char * extensio
       members[k] = coneIdx[j];
       k++;
     }
-    OsiConeType type;
+    OsiLorentzConeType type;
     if (coneType[i]==1) {
       type = OSI_QUAD;
     }
