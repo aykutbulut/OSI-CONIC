@@ -8,9 +8,10 @@
 #                       Names and other basic things                        #
 #############################################################################
 AC_PREREQ(2.59)
-AC_INIT([osiconic],[0.0],[https://github.com/aykutbulut/OSI-CONIC/issues/new])
+AC_INIT([OsiConic],[0.1],[https://github.com/aykutbulut/OSI-CONIC/issues/new])
 
-AC_COPYRIGHT([/*===========================================================================*/
+AC_COPYRIGHT([
+/*===========================================================================*/
 /*                                                                           */
 /* OsiConic is developed by Aykut Bulut (aykutblt@gmail.com)                 */
 /*                                                                           */
@@ -21,8 +22,6 @@ AC_COPYRIGHT([/*================================================================
 /*                                                                           */
 /*===========================================================================*/
 ])
-
-AC_REVISION(0.9)
 
 # List one file in the package so that the configure script can test
 # whether the package is actually there
@@ -35,31 +34,6 @@ AC_CONFIG_SRCDIR(src/OsiConicSolverInterface.hpp)
 AC_PREFIX_DEFAULT([`pwd`])
 
 #############################################################################
-#              Create the libtool script for the subdirectories             #
-#############################################################################
-AC_COIN_CREATE_LIBTOOL
-
-#############################################################################
-#                  Check which subprojects are there                        #
-#############################################################################
-AC_COIN_MAIN_PACKAGEDIR(CoinUtils)
-AC_COIN_MAIN_PACKAGEDIR(Osi)
-
-#############################################################################
-#                  Check for doxygen                                        #
-#############################################################################
-AC_COIN_DOXYGEN(CoinUtils Osi)
-
-##############################################################################
-#                   Finishing up by writing all the output                   #
-##############################################################################
-# Here list all the files that configure should create (except for the
-# configuration header file)
-dnl AC_CONFIG_FILES([Makefile])
-
-dnl AC_CONFIG_FILES([doxydoc/doxygen.conf])
-
-#############################################################################
 #                         Standard build tool stuff                         #
 #############################################################################
 # Get the system type
@@ -69,7 +43,7 @@ AC_CANONICAL_BUILD
 # the source root directory contains definition of where to find those
 # externals.  The following macro ensures that those externals are
 # retrieved by svn if they are not there yet.
-#AC_COIN_PROJECTDIR_INIT(Clp)
+AC_COIN_PROJECTDIR_INIT(OsiConic)
 
 # Check if user wants to produce debugging code
 AC_COIN_DEBUG_COMPILE(OsiConic)
@@ -84,11 +58,13 @@ AC_COIN_INIT_AUTO_TOOLS
 #                              COIN-OR components                           #
 #############################################################################
 AC_COIN_CHECK_PACKAGE(CoinUtils, [coinutils], [OsiConicLib])
+if test $coin_has_coinutils != yes ; then
+  AC_MSG_ERROR([Required package CoinUtils not available.])
+fi
 AC_COIN_CHECK_PACKAGE(Osi,       [osi],       [OsiConicLib])
-
-#############################################################################
-#                        Third party linear solvers                         #
-#############################################################################
+if test $coin_has_osi != yes ; then
+  AC_MSG_ERROR([Required package Osi not available.])
+fi
 
 #############################################################################
 #                             Other dependencies                            #
@@ -108,7 +84,7 @@ dnl AC_COIN_VPATH_LINK(examples/gparm.tiny)
 #############################################################################
 #                  Check for doxygen                                        #
 #############################################################################
-dnl AC_COIN_DOXYGEN(CoinUtils Osi)
+AC_COIN_DOXYGEN(CoinUtils Osi)
 
 ##############################################################################
 #                   Finishing up by writing all the output                   #
@@ -123,7 +99,7 @@ AC_CONFIG_FILES([Makefile
 AC_CONFIG_FILES([doxydoc/doxygen.conf])
 
 # Here put the location and name of the configuration header file
-AC_CONFIG_HEADER([src/config_osiconic.h])
+AC_CONFIG_HEADER([src/config.h src/config_osiconic.h])
 
 # Finally, we let configure write all the output...
 AC_COIN_FINALIZE

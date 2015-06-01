@@ -6,16 +6,45 @@
 
 AUTOMAKE_OPTIONS = foreign
 
-EXTRA_DIST = doxydoc/doxygen.conf
-
 ########################################################################
 #                          Subdirectories                              #
 ########################################################################
 
 # subdirs is set by configure as the list of all subdirectories to recurse
 # into
-SUBDIRS = $(subdirs) src
+SUBDIRS = src
 
 ########################################################################
-#                           Extra Targets                              #
+#                    Creation of the addlibs file                      #
 ########################################################################
+
+pkgconfiglibdir = $(libdir)/pkgconfig
+pkgconfiglib_DATA = osiconic.pc
+
+addlibsdir = $(DESTDIR)$(datadir)/coin/doc/OsiConic
+
+install-data-hook:
+	@$(mkdir_p) "$(addlibsdir)"
+if COIN_HAS_PKGCONFIG
+	PKG_CONFIG_PATH=@COIN_PKG_CONFIG_PATH@ \
+	$(PKG_CONFIG) --libs osiconic > $(addlibsdir)/osiconic_addlibs.txt
+else
+if COIN_CXX_IS_CL
+	echo "-libpath:`$(CYGPATH_W) @abs_lib_dir@` libOsiConic.lib @OSICONICLIB_LIBS_INSTALLED@" > $(addlibsdir)/osiconic_addlibs.txt
+else
+	echo -L@abs_lib_dir@ -lOsiConic @OSICONICLIB_LIBS_INSTALLED@ > $(addlibsdir)/osiconic_addlibs.txt
+endif
+endif
+
+uninstall-hook:
+	rm -f $(addlibsdir)/osiconic_addlibs.txt
+
+########################################################################
+#                         Maintainer Stuff                             #
+########################################################################
+
+CLEANFILES =
+# Files that are generated and should be cleaned with make distclean
+DISTCLEANFILES =
+EXTRA_DIST =
+include BuildTools/Makemain.inc
