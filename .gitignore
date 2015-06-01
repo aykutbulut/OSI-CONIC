@@ -19,3 +19,12 @@
 *.exe
 *.out
 *.app
+
+# emacs backup files
+*~
+
+# external projects
+/BuildTools/*
+/CoinUtils/*
+/Osi/*
+/build/*
