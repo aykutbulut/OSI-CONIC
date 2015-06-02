@@ -7,6 +7,6 @@ Name: OsiConic
 Description: Osi Conic Solver Interface
 URL: https://github.com/aykutbulut/OsiConic
 Version: @PACKAGE_VERSION@
-Libs: -L${libdir} -lOsiconic
+Libs: -L${libdir} -lOsiConic
 Cflags: -I${includedir}
 Requires: osi coinutils
