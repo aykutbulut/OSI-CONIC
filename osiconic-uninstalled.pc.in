@@ -3,7 +3,7 @@ libdir=@ABSBUILDDIR@/src
 
 Name: OsiConic
 Description: Osi Conic Solver Interface
-URL: https://github.com/aykutbulut/OsiConic
+URL: https://github.com/aykutbulut/OSI-CONIC
 Version: @PACKAGE_VERSION@
 Libs: ${libdir}/libOsiConic.la @OSICONICLIB_PCLIBS@
 Cflags: -I@abs_source_dir@/src -I@ABSBUILDDIR@/src
