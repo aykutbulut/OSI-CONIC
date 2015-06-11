@@ -1,3 +1,7 @@
+# autotools auxilaries
+acinclude.m4
+/autom4te.cache
+
 # Compiled Object files
 *.slo
 *.lo
