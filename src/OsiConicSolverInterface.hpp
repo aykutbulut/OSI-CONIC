@@ -50,6 +50,8 @@ public:
   virtual void getConeType(OsiConeType * type) const = 0;
   virtual void getConeType(OsiLorentzConeType * type) const = 0;
   virtual OsiConicSolverInterface * clone(bool copyData = true) const = 0;
+  virtual void writeMps (const char *filename, const char *extension="mps",
+			 double objSense=0.0) const = 0;
   virtual ~OsiConicSolverInterface() {};
   virtual int readMps(const char * filename, const char * extension="mps");
   // un-hide OsiSolverInterfaces applyCuts function
