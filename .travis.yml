@@ -7,8 +7,8 @@ before_script:
   - svn co https://projects.coin-or.org/svn/CoinUtils/stable/2.10/CoinUtils CoinUtils
   - svn co https://projects.coin-or.org/svn/Osi/stable/0.107/Osi Osi
   - mkdir build
-  - cd CoinUtils && ./configure --prefix=/home/travis/aykut/OSI-CONIC/build && make && make install
-  - cd Osi && ./configure --prefix=/home/travis/aykut/OSI-CONIC/build && make && make install
+  - cd CoinUtils && ./configure --prefix=/home/travis/aykut/OSI-CONIC/build && make && make install && cd ..
+  - cd Osi && ./configure --prefix=/home/travis/aykut/OSI-CONIC/build && make && make install && cd ..
 
 os:
   - linux
