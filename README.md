@@ -1,13 +1,13 @@
 OSI-CONIC
-=========
+===
 Conic problem solver interface library. Extends Coin-OR's OSI interface to conic problems. Inherits Coin-OR's OsiCLpSolverInterface class and adds conic problem specific methods (querring cones, etc.).
 
 Dependencies
-=========
+===
 Depends Osi and CoinUtils.
 
 Install
-=========
+===
 After pulling OsiConic, run the following commands.<br />
 cd OsiConic <br />
 ./get_dependencies.sh <br />
