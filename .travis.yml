@@ -3,5 +3,12 @@ language: cpp
 compiler:
   - gcc
 
+before_script:
+  - svn co https://projects.coin-or.org/svn/CoinUtils/stable/2.10/CoinUtils CoinUtils
+  - svn co https://projects.coin-or.org/svn/Osi/stable/0.107/Osi Osi
+  - mkdir build
+  - cd build
+  - ../CoinUtils/configure && make install
+
 os:
   - linux
