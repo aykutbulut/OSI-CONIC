@@ -1,6 +1,5 @@
 OSI-CONIC
 ===
-https://travis-ci.org/aykutbulut/OSI-CONIC.svg?branch=master
 [![Build Status](https://travis-ci.org/aykutbulut/OSI-CONIC.svg?branch=master)](https://travis-ci.org/aykutbulut/OSI-CONIC)
 !https://travis-ci.org/aykutbulut/OSI-CONIC.svg?branch=master!:https://travis-ci.org/aykutbulut/OSI-CONIC
 {<img src="https://travis-ci.org/aykutbulut/OSI-CONIC.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/aykutbulut/OSI-CONIC]
