@@ -6,8 +6,8 @@ compiler:
 before_script:
   - svn co https://projects.coin-or.org/svn/CoinUtils/stable/2.10/CoinUtils CoinUtils
   - svn co https://projects.coin-or.org/svn/Osi/stable/0.107/Osi Osi
-  - ./CoinUtils/configure && make install
-  - ./Osi/configure && make install
+  - ./CoinUtils/configure --prefix=$(TRAVIS_BUILD_DIR) && make install
+  - ./Osi/configure --prefix=$(TRAVIS_BUILD_DIR) && make install
 
 os:
   - linux
