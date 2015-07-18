@@ -14,3 +14,4 @@ script: ./configure --prefix=/home/travis/aykut/OSI-CONIC/build && make install
 
 os:
   - linux
+  - osx
