@@ -1,15 +1,6 @@
 OSI-CONIC
 ===
 [![Build Status](https://travis-ci.org/aykutbulut/OSI-CONIC.svg?branch=master)](https://travis-ci.org/aykutbulut/OSI-CONIC)
-!https://travis-ci.org/aykutbulut/OSI-CONIC.svg?branch=master!:https://travis-ci.org/aykutbulut/OSI-CONIC
-{<img src="https://travis-ci.org/aykutbulut/OSI-CONIC.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/aykutbulut/OSI-CONIC]
-.. image:: https://travis-ci.org/aykutbulut/OSI-CONIC.svg?branch=master
-    :target: https://travis-ci.org/aykutbulut/OSI-CONIC
-=for HTML <a href="https://travis-ci.org/aykutbulut/OSI-CONIC"><img src="https://travis-ci.org/aykutbulut/OSI-CONIC.svg?branch=master"></a>
-#https://api.travis-ci.org/repos/aykutbulut/OSI-CONIC/cc.xml?branch=master
-
-
-
 Conic problem solver interface library. Extends Coin-OR's OSI interface to conic problems. Inherits Coin-OR's OsiCLpSolverInterface class and adds conic problem specific methods (querring cones, etc.).
 
 Dependencies
