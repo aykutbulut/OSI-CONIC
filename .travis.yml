@@ -10,5 +10,7 @@ before_script:
   - cd CoinUtils && ./configure --prefix=/home/travis/aykut/OSI-CONIC/build && make && make install && cd ..
   - cd Osi && ./configure --prefix=/home/travis/aykut/OSI-CONIC/build && make && make install && cd ..
 
+script: ./configure --prefix=/home/travis/aykut/OSI-CONIC/build && make install
+
 os:
   - linux
