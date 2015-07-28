@@ -62,11 +62,7 @@ int OsiConicSolverInterface::readMps(const char *filename, const char * extensio
     }
     // get members
     members = new int[num_members];
-    int k=0;
-    for (int j=coneStart[i]; j<coneStart[i+1]; ++j) {
-      members[k] = coneIdx[j];
-      k++;
-    }
+    std::copy(coneIdx+coneStart[i], coneIdx+coneStart[i+1], members);
     OsiLorentzConeType type;
     if (coneType[i]==1) {
       type = OSI_QUAD;
