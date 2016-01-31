@@ -16,9 +16,9 @@ lib_LTLIBRARIES = libOsiConic.la
 
 # List all source files for this library, including headers
 libOsiConic_la_SOURCES=\
-	Cone.hpp\
-	LorentzCone.hpp\
-	ScaledCone.hpp\
+	OsiCone.hpp\
+	OsiLorentzCone.hpp\
+	OsiScaledCone.hpp\
 	OsiConicSolverInterface.hpp\
 	OsiConicSolverInterface.cpp\
 	OsiConicCut.hpp\
@@ -53,9 +53,9 @@ DEFAULT_INCLUDES = -I. -I`$(CYGPATH_W) $(srcdir)`
 # and that therefore should be installed in 'include/coin'
 includecoindir = $(includedir)/coin
 includecoin_HEADERS = \
-	Cone.hpp\
-	LorentzCone.hpp\
-	ScaledCone.hpp\
+	OsiCone.hpp\
+	OsiLorentzCone.hpp\
+	OsiScaledCone.hpp\
 	OsiConicSolverInterface.hpp\
 	OsiConicCut.hpp\
 	OsiConicCuts.hpp
