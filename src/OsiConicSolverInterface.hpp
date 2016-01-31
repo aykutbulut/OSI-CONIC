@@ -11,7 +11,7 @@ Manipulating/building functions will be supported later.
 
 // OSI headers
 #include <OsiSolverInterface.hpp>
-#include <Cone.hpp>
+#include "OsiCone.hpp"
 
 class OsiConicCuts;
 

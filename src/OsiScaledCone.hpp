@@ -1,11 +1,13 @@
 #ifndef LorentzCone_H
 #define LorentzCone_H
 
-#include <Cone.hpp>
+#include "OsiCone.hpp"
 
 // Implements Scaled cone ||Ax-b|| <= d^T x -h
-class ScaledCone: public Cone {
+class OsiScaledCone: public OsiCone {
 public:
+  OsiScaledCone(): OsiCone(OSI_SCALED) {}
+  ~OsiScaledCone() {}
   // check whether a given point is feasible
   virtual bool feasible(double const * point) const {
     std::cerr << "Work in process!" << std::endl;

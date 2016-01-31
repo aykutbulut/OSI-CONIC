@@ -11,9 +11,11 @@ typedef enum {
   OSI_RQUAD
 } OsiLorentzConeType;
 
-class Cone {
-  OsiConeType coneType_;
+class OsiCone {
+  OsiConeType const coneType_;
 public:
+  OsiCone(OsiConeType type): coneType_(type) {}
+  ~OsiCone() {}
   OsiConeType type() const {return coneType_; }
   // check whether a given point is feasible
   virtual bool feasible(double const * point) const = 0;
