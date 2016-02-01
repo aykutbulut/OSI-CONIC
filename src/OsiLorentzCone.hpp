@@ -10,11 +10,8 @@ class OsiLorentzCone: public OsiCone {
   int const size_;
   int * members_;
 public:
-  OsiLorentzConeType type() const { return type_; }
-  int size() const { return size_; }
-  int const * members() const { return members_; }
   OsiLorentzCone(OsiLorentzConeType type, int size, int const * members):
-    type_(type), size_(size) {
+    OsiCone(OSI_LORENTZ), lType_(type), size_(size) {
     if (size<2) {
       std::cerr << "Cones should be size 2 at least!" << std::endl;
       throw std::exception();
@@ -31,6 +28,9 @@ public:
       delete[] members_;
     }
   }
+  OsiLorentzConeType type() const { return lType_; }
+  int size() const { return size_; }
+  int const * members() const { return members_; }
   // check whether a given point is feasible
   virtual bool feasible(double const * point) const {
     std::cerr << "Work in process!" << std::endl;
