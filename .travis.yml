@@ -1,17 +1,27 @@
 language: cpp
 
-compiler:
-  - gcc
+matrix:
+  include:
+    - os: osx
+      osx_image: osx10.11
+      env: OSX=10.11
+      compiler: clang
+    - os: osx
+      osx_image: xcode7
+      env: OSX=10.10
+      compiler: clang
+    - os: osx
+      osx_image: beta-xcode6.2
+      env: OSX=10.9
+      compiler: clang
+    - os: linux
+  allow_failures:
+    - os: osx
 
 before_script:
-  - svn co https://projects.coin-or.org/svn/CoinUtils/stable/2.10/CoinUtils CoinUtils
-  - svn co https://projects.coin-or.org/svn/Osi/stable/0.107/Osi Osi
-  - mkdir build
-  - cd CoinUtils && ./configure --prefix=/home/travis/aykut/OSI-CONIC/build && make && make install && cd ..
-  - cd Osi && ./configure --prefix=/home/travis/aykut/OSI-CONIC/build && make && make install && cd ..
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]] && [[ "$OSX" != "10.9" ]]; then brew update; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]] && [[ "$OSX" != "10.9" ]]; then brew install gcc; fi
+  - git clone https://gist.github.com/tkralphs/13d4529b4d4e8889f3a6 scripts
+  - bash scripts/get.dependencies.sh fetch > /dev/null
 
-script: ./configure --prefix=/home/travis/aykut/OSI-CONIC/build && make install
-
-os:
-  - linux
-  - osx
+script: bash scripts/get.dependencies.sh build --quiet --test
