@@ -1,6 +1,7 @@
 #ifndef LorentzCone_H
 #define LorentzCone_H
 
+#include <iostream>
 #include "OsiCone.hpp"
 
 // Implements Lorentz cone, can be regular (x_1 >= ||x_{2:n}||) or
