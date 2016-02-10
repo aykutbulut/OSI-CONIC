@@ -18,6 +18,7 @@ lib_LTLIBRARIES = libOsiConic.la
 libOsiConic_la_SOURCES=\
 	OsiCone.hpp\
 	OsiLorentzCone.hpp\
+	OsiLorentzCone.cpp\
 	OsiScaledCone.hpp\
 	OsiConicSolverInterface.hpp\
 	OsiConicSolverInterface.cpp\

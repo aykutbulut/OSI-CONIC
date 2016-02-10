@@ -67,8 +67,8 @@ LTLIBRARIES = $(lib_LTLIBRARIES)
 am__DEPENDENCIES_1 =
 @DEPENDENCY_LINKING_TRUE@libOsiConic_la_DEPENDENCIES =  \
 @DEPENDENCY_LINKING_TRUE@	$(am__DEPENDENCIES_1)
-am_libOsiConic_la_OBJECTS = OsiConicSolverInterface.lo OsiConicCut.lo \
-	OsiConicCuts.lo
+am_libOsiConic_la_OBJECTS = OsiLorentzCone.lo \
+	OsiConicSolverInterface.lo OsiConicCut.lo OsiConicCuts.lo
 libOsiConic_la_OBJECTS = $(am_libOsiConic_la_OBJECTS)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -290,6 +290,7 @@ lib_LTLIBRARIES = libOsiConic.la
 libOsiConic_la_SOURCES = \
 	OsiCone.hpp\
 	OsiLorentzCone.hpp\
+	OsiLorentzCone.cpp\
 	OsiScaledCone.hpp\
 	OsiConicSolverInterface.hpp\
 	OsiConicSolverInterface.cpp\
@@ -432,6 +433,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/OsiConicCut.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/OsiConicCuts.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/OsiConicSolverInterface.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/OsiLorentzCone.Plo@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	if $(CXXCOMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \
