@@ -8,7 +8,7 @@
 #                       Names and other basic things                        #
 #############################################################################
 AC_PREREQ(2.59)
-AC_INIT([OsiConic],[0.1],[https://github.com/aykutbulut/OSI-CONIC/issues/new])
+AC_INIT([OsiConic],[1.0.0],[https://github.com/aykutbulut/OSI-CONIC/issues/new])
 
 AC_COPYRIGHT([
 /*===========================================================================*/
