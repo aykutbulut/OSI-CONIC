@@ -2,7 +2,7 @@ OSI-CONIC [![Build Status](https://travis-ci.org/aykutbulut/OSI-CONIC.svg?branch
 ===
 
 
-Conic problem solver interface library. Extends Coin-OR's OSI interface to conic problems. Inherits Coin-OR's OsiCLpSolverInterface class and adds conic problem specific methods (querring cones, etc.).
+Conic problem solver interface library. Extends Coin-OR's OSI interface to conic problems. Inherits Coin-OR's OsiCLpSolverInterface class and adds conic problem specific methods (querying cones, etc.).
 
 Dependencies
 ===
